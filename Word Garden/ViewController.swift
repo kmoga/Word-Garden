@@ -31,6 +31,10 @@ class ViewController: UIViewController {
         guessedLetterField.resignFirstResponder()
         guessedLetterField.text = ""
     }
+    
+    @IBAction func doneKeyPressed(_ sender: UITextField) {
+        updateafterGuess()
+    }
 
     @IBAction func guessLetterButtonPressed(_ sender: UIButton) {
         updateafterGuess()
@@ -40,13 +44,14 @@ class ViewController: UIViewController {
     }
     
     @IBAction func guessLetterFieldChanged(_ sender: UITextField) {
-        
+        if let letterGuessed = guessedLetterField.text?.last {
+           guessedLetterField.text = "\(letterGuessed)"
+            guessLetterButton.isEnabled = true
+        } else {
+            //disable the button if i dont have a character in the Guessed Letter Field
+            guessLetterButton.isEnabled = false
     }
-    
-    @IBAction func doneKeyPressed(_ sender: UITextField) {
-        updateafterGuess()
-    }
-    
     
 }
 
+}
