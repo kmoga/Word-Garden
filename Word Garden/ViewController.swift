@@ -25,8 +25,8 @@ class ViewController: UIViewController {
 //Variables
     var wordToGuess = "SWIFT"
     var lettersGuessed = ""
-    let maxNumberOfWrongGuesses = 10
-    var wrongGuessesRemaining = 10
+    let maxNumberOfWrongGuesses = 8
+    var wrongGuessesRemaining = 8
     var guessCount = 0
     
 
@@ -78,7 +78,7 @@ class ViewController: UIViewController {
             guessCountLabel.text = "So sorry, you're all out of guesses. Try again?"
         } else if !revealedWord.contains("_") {
             //You've won a game!!
-            playAgainButton.isHidden = true
+            playAgainButton.isHidden = false
             guessedLetterField.isEnabled = true
             guessLetterButton.isEnabled = false
             guessCountLabel.text = "You've got it! It took you \(guessCount) guesses to guess the word!"
@@ -104,7 +104,7 @@ class ViewController: UIViewController {
         playAgainButton.isHidden = true
         guessedLetterField.isEnabled = true
         guessLetterButton.isEnabled = false
-        flowerImageView.image = UIImage(named: "flower9")
+        flowerImageView.image = UIImage(named: "flower8")
         wrongGuessesRemaining = maxNumberOfWrongGuesses
         lettersGuessed = ""
         formatUserGuessLabel()
@@ -114,13 +114,13 @@ class ViewController: UIViewController {
     
     @IBAction func guessLetterFieldChanged(_ sender: UITextField) {
         if let letterGuessed = guessedLetterField.text?.last {
-           guessedLetterField.text = "\(letterGuessed)"
+            guessedLetterField.text = "\(letterGuessed)"
             guessLetterButton.isEnabled = true
         } else {
-            //disable the button if i dont have a character in the Guessed Letter Field
+            // disable the button if I don't have a single character in the guessedLetterField
             guessLetterButton.isEnabled = false
+        }
     }
     
 }
 
-}
